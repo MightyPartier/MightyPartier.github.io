@@ -108,7 +108,7 @@ function displayAllHeroes() {
             <p>Level: <span class="hero-level" data-hero-index="${heroesData.indexOf(hero)}">${hero.level}</span></p>
             <p>Power: ${hero.power}</p>
             <p>Level Up Cost: ${hero.levelUpCost}</p>
-            <p>Power Up Cost: ${hero.powerUpCost}</p>
+            <p>Power Gained By Leveling: ${hero.powerUpCost}</p>
             <input type="number" min="1" value="${hero.level}" onchange="changeHeroLevel(${heroesData.indexOf(hero)}, this.value)">
         `;
 
