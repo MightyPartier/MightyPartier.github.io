@@ -35,7 +35,7 @@ function calculateLevelUpCost(hero) {
 }
 
 // Function to calculate the power up cost of a hero based on its next level power gain
-function calculatePowerUpCost(hero) {
+function calculatePowerGained(hero) {
     const nextLevelPower = calculatePower({ ...hero, level: hero.level + 1 });
     return nextLevelPower - hero.power;
 }
@@ -47,7 +47,7 @@ function displayHero(hero) {
     // Calculate hero stats
     hero.power = calculatePower(hero);
     hero.levelUpCost = calculateLevelUpCost(hero);
-    hero.powerUpCost = calculatePowerUpCost(hero);
+    hero.PowerGained = calculatePowerGained(hero);
 
     // Create elements to display hero information
     const heroInfo = document.createElement("div");
@@ -58,7 +58,7 @@ function displayHero(hero) {
         <p>Level: ${hero.level}</p>
         <p>Power: ${hero.power}</p>
         <p>Level Up Cost: ${hero.levelUpCost}</p>
-        <p>Power Gained By Leveling: ${hero.powerUpCost}</p>
+        <p>Power Gained By Leveling: ${hero.PowerGained}</p>
         <button onclick="levelUp(${heroesData.indexOf(hero)})">Level Up</button>
     `;
 
@@ -96,7 +96,7 @@ function displayAllHeroes() {
         // Calculate hero stats
         hero.power = calculatePower(hero);
         hero.levelUpCost = calculateLevelUpCost(hero);
-        hero.powerUpCost = calculatePowerUpCost(hero);
+        hero.PowerGained = calculatePowerGained(hero);
 
         // Create elements to display hero information
         const heroInfo = document.createElement("div");
@@ -108,7 +108,7 @@ function displayAllHeroes() {
             <p>Level: <span class="hero-level" data-hero-index="${heroesData.indexOf(hero)}">${hero.level}</span></p>
             <p>Power: ${hero.power}</p>
             <p>Level Up Cost: ${hero.levelUpCost}</p>
-            <p>Power Gained By Leveling: ${hero.powerUpCost}</p>
+            <p>Power Gained By Leveling: ${hero.PowerGained}</p>
             <input type="number" min="1" value="${hero.level}" onchange="changeHeroLevel(${heroesData.indexOf(hero)}, this.value)">
         `;
 
@@ -132,7 +132,7 @@ function changeHeroLevel(heroIndex, newLevel) {
     hero.level = parsedLevel;
     hero.power = calculatePower(hero);
     hero.levelUpCost = calculateLevelUpCost(hero);
-    hero.powerUpCost = calculatePowerUpCost(hero);
+    hero.PowerGained = calculatePowerGained(hero);
 
     // After changing the level, update the recommendation and redisplay all heroes
     updateRecommendation();
@@ -158,9 +158,9 @@ function updateRecommendation() {
 
     factions.forEach(faction => {
         const factionHeroes = heroesData.filter(hero => hero.faction === faction);
-        const maxPowerCostRatio = Math.max(...factionHeroes.map(hero => hero.powerUpCost / hero.levelUpCost));
+        const maxPowerCostRatio = Math.max(...factionHeroes.map(hero => hero.PowerGained / hero.levelUpCost));
         factionHeroes.forEach(hero => {
-            hero.recommended = (hero.powerUpCost / hero.levelUpCost === maxPowerCostRatio);
+            hero.recommended = (hero.PowerGained / hero.levelUpCost === maxPowerCostRatio);
         });
     });
 }
