@@ -1,19 +1,19 @@
 // Sample data for the heroes
 const heroesData = [
-    { name: "Celeste", rarity: "Common", faction: "Order", level: 1, type: "Melee", rarityConstant: 98 },
     { name: "Bonny", rarity: "Common", faction: "Order", level: 1, type: "Ranged", rarityConstant: 98 },
-    { name: "Evelynn", rarity: "Common", faction: "Chaos", level: 1, type: "Ranged", rarityConstant: 98 },
-    { name: "Zuul", rarity: "Common", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 98 },
-    { name: "Genbu", rarity: "Common", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 98 },
     { name: "Surus", rarity: "Common", faction: "Nature", level: 1, type: "Melee", rarityConstant: 98 },
+    { name: "Zuul", rarity: "Common", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 98 },
+    { name: "Celeste", rarity: "Common", faction: "Order", level: 1, type: "Melee", rarityConstant: 98 },
+    { name: "Genbu", rarity: "Common", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 98 },
+    { name: "Evelynn", rarity: "Common", faction: "Chaos", level: 1, type: "Ranged", rarityConstant: 98 },
     { name: "Felicia", rarity: "Rare", faction: "Order", level: 1, type: "Melee", rarityConstant: 147 },
-    { name: "Caleb", rarity: "Rare", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 147 },
     { name: "Venomeus", rarity: "Rare", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 147 },
-    { name: "Richard", rarity: "Epic", faction: "Order", level: 1, type: "Melee", rarityConstant: 196 },
-    { name: "Salma", rarity: "Epic", faction: "Chaos", level: 1, type: "Ranged", rarityConstant: 196 },
+    { name: "Caleb", rarity: "Rare", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 147 },
     { name: "Empyrion", rarity: "Epic", faction: "Nature", level: 1, type: "Melee", rarityConstant: 196 },
-    { name: "Magnus", rarity: "Legendary", faction: "Order", level: 1, type: "Ranged", rarityConstant: 245 },
+    { name: "Salma", rarity: "Epic", faction: "Chaos", level: 1, type: "Ranged", rarityConstant: 196 },
+    { name: "Richard", rarity: "Epic", faction: "Order", level: 1, type: "Melee", rarityConstant: 196 },    
     { name: "Kilgarrah", rarity: "Legendary", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 245 },
+    { name: "Magnus", rarity: "Legendary", faction: "Order", level: 1, type: "Ranged", rarityConstant: 245 },
     { name: "Scryre", rarity: "Legendary", faction: "Nature", level: 1, type: "Melee", rarityConstant: 245 }
 ];
 
