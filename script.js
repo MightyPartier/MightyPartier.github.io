@@ -130,7 +130,7 @@ function displayAllHeroes() {
             <p>Power Gained By Leveling: ${hero.PowerGained}</p>
             <input type="number" min="1" value="${hero.level}" onchange="changeHeroLevel(${heroesData.indexOf(hero)}, this.value)">
             
-            // Create checkbox to disable/enable hero
+            /* Create checkbox to disable/enable hero */
             const disableCheckbox = document.createElement("input");
             disableCheckbox.type = "checkbox";
             disableCheckbox.checked = !hero.disabled; // Checkbox checked if hero is not disabled
