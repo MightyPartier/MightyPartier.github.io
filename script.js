@@ -103,7 +103,6 @@ function levelUp(heroIndex) {
 // ... (same as before)
 
 // Function to display all heroes
-// Function to display all heroes
 function displayAllHeroes() {
     const heroContainer = document.getElementById("heroContainer");
     heroContainer.innerHTML = "";
@@ -130,22 +129,26 @@ function displayAllHeroes() {
             <p>Power Gained By Leveling: ${hero.PowerGained}</p>
             <input type="number" min="1" value="${hero.level}" onchange="changeHeroLevel(${heroesData.indexOf(hero)}, this.value)">
             
-            /* Create checkbox to disable/enable hero */
-            const disableCheckbox = document.createElement("input");
-            disableCheckbox.type = "checkbox";
-            disableCheckbox.checked = !hero.disabled; // Checkbox checked if hero is not disabled
-            disableCheckbox.onchange = function() {
-                toggleHeroDisable(heroesData.indexOf(hero), !this.checked);
-            };
-            
-            const listItem = document.createElement("li");
-            listItem.appendChild(heroInfo);
-            listItem.appendChild(disableCheckbox);
-            
-            // Append the hero info and checkbox to the container
+            <!-- Create checkbox to disable/enable hero -->
+            `;
+        
+        // Create checkbox to disable/enable hero
+        const disableCheckbox = document.createElement("input");
+        disableCheckbox.type = "checkbox";
+        disableCheckbox.checked = !hero.disabled; // Checkbox checked if hero is not disabled
+        disableCheckbox.onchange = function() {
+            toggleHeroDisable(heroesData.indexOf(hero), !this.checked);
+        };
+        
+        const listItem = document.createElement("li");
+        listItem.appendChild(heroInfo);
+        listItem.appendChild(disableCheckbox);
+        
+        // Append the hero info and checkbox to the container
         heroContainer.appendChild(listItem);
     });
 }
+
 
 
 
