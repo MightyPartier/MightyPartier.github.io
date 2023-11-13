@@ -1,4 +1,7 @@
 // Sample data for the heroes
+
+const maxLevel = 10000; // Define the maximum level for heroes
+
 const heroesData = [
     { name: "Bonny", rarity: "Common", faction: "Order", level: 1, type: "Ranged", rarityConstant: 98, disabled: false},
     { name: "Surus", rarity: "Common", faction: "Nature", level: 1, type: "Melee", rarityConstant: 98, disabled: false},
