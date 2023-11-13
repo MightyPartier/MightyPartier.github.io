@@ -1,27 +1,31 @@
 // Sample data for the heroes
 const heroesData = [
-    { name: "Bonny", rarity: "Common", faction: "Order", level: 1, type: "Ranged", rarityConstant: 98 },
-    { name: "Surus", rarity: "Common", faction: "Nature", level: 1, type: "Melee", rarityConstant: 98 },
-    { name: "Zuul", rarity: "Common", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 98 },
-    { name: "Celeste", rarity: "Common", faction: "Order", level: 1, type: "Melee", rarityConstant: 98 },
-    { name: "Genbu", rarity: "Common", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 98 },
-    { name: "Evelynn", rarity: "Common", faction: "Chaos", level: 1, type: "Ranged", rarityConstant: 98 },
-    { name: "Daphne", rarity: "Rare", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 147 },
-    { name: "Felicia", rarity: "Rare", faction: "Order", level: 1, type: "Melee", rarityConstant: 147 },
-    { name: "Venomeus", rarity: "Rare", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 147 },
-    { name: "Caleb", rarity: "Rare", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 147 },
-    { name: "Vanessa", rarity: "Epic", faction: "Order", level: 1, type: "Melee", rarityConstant: 196 },
-    { name: "Empyrion", rarity: "Epic", faction: "Nature", level: 1, type: "Melee", rarityConstant: 196 },
-    { name: "Salma", rarity: "Epic", faction: "Chaos", level: 1, type: "Ranged", rarityConstant: 196 },
-    { name: "Richard", rarity: "Epic", faction: "Order", level: 1, type: "Melee", rarityConstant: 196 },
-    { name: "Alucard", rarity: "Legendary", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 245 },
-    { name: "Kilgarrah", rarity: "Legendary", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 245 },
-    { name: "Magnus", rarity: "Legendary", faction: "Order", level: 1, type: "Ranged", rarityConstant: 245 },
-    { name: "Scryre", rarity: "Legendary", faction: "Nature", level: 1, type: "Melee", rarityConstant: 245 }
+    { name: "Bonny", rarity: "Common", faction: "Order", level: 1, type: "Ranged", rarityConstant: 98, disabled: false},
+    { name: "Surus", rarity: "Common", faction: "Nature", level: 1, type: "Melee", rarityConstant: 98, disabled: false},
+    { name: "Zuul", rarity: "Common", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 98, disabled: false},
+    { name: "Celeste", rarity: "Common", faction: "Order", level: 1, type: "Melee", rarityConstant: 98, disabled: false },
+    { name: "Genbu", rarity: "Common", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 98, disabled: false },
+    { name: "Evelynn", rarity: "Common", faction: "Chaos", level: 1, type: "Ranged", rarityConstant: 98, disabled: false },
+    { name: "Daphne", rarity: "Rare", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 147, disabled: false },
+    { name: "Felicia", rarity: "Rare", faction: "Order", level: 1, type: "Melee", rarityConstant: 147, disabled: false },
+    { name: "Venomeus", rarity: "Rare", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 147, disabled: false },
+    { name: "Caleb", rarity: "Rare", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 147, disabled: false },
+    { name: "Vanessa", rarity: "Epic", faction: "Order", level: 1, type: "Melee", rarityConstant: 196, disabled: false },
+    { name: "Empyrion", rarity: "Epic", faction: "Nature", level: 1, type: "Melee", rarityConstant: 196, disabled: false },
+    { name: "Salma", rarity: "Epic", faction: "Chaos", level: 1, type: "Ranged", rarityConstant: 196, disabled: false },
+    { name: "Richard", rarity: "Epic", faction: "Order", level: 1, type: "Melee", rarityConstant: 196, disabled: false },
+    { name: "Alucard", rarity: "Legendary", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 245, disabled: false },
+    { name: "Kilgarrah", rarity: "Legendary", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 245, disabled: false },
+    { name: "Magnus", rarity: "Legendary", faction: "Order", level: 1, type: "Ranged", rarityConstant: 245, disabled: false },
+    { name: "Scryre", rarity: "Legendary", faction: "Nature", level: 1, type: "Melee", rarityConstant: 245, disabled: false }
 ];
 
 // Function to calculate the power of a hero based on its level and rarity
 function calculatePower(hero) {
+    if (hero.disabled) {
+        return 0; // or any other value you choose for disabled heroes
+    }
+
     const rarityFactorMap = {
         "Common": 2,
         "Rare": 3,
@@ -34,11 +38,19 @@ function calculatePower(hero) {
 
 // Function to calculate the level up cost of a hero based on its level
 function calculateLevelUpCost(hero) {
+    if (hero.disabled) {
+        return 0; // or any other value you choose for disabled heroes
+    }
+
     return Math.floor(2 * Math.pow(hero.level, 1.5) + 8);
 }
 
 // Function to calculate the power up cost of a hero based on its next level power gain
 function calculatePowerGained(hero) {
+    if (hero.disabled || hero.level >= maxLevel) {
+        return 0; // or any other value you choose for disabled heroes or heroes at max level
+    }
+
     const nextLevelPower = calculatePower({ ...hero, level: hero.level + 1 });
     return nextLevelPower - hero.power;
 }
@@ -160,11 +172,13 @@ function updateRecommendation() {
     const factions = [...new Set(heroesData.map(hero => hero.faction))];
 
     factions.forEach(faction => {
-        const factionHeroes = heroesData.filter(hero => hero.faction === faction);
-        const maxPowerCostRatio = Math.max(...factionHeroes.map(hero => hero.PowerGained / hero.levelUpCost));
-        factionHeroes.forEach(hero => {
-            hero.recommended = (hero.PowerGained / hero.levelUpCost === maxPowerCostRatio);
-        });
+        const factionHeroes = heroesData.filter(hero => hero.faction === faction && !hero.disabled);
+        if (factionHeroes.length > 0) {
+            const maxPowerCostRatio = Math.max(...factionHeroes.map(hero => hero.PowerGained / hero.levelUpCost));
+            factionHeroes.forEach(hero => {
+                hero.recommended = (hero.PowerGained / hero.levelUpCost === maxPowerCostRatio);
+            });
+        }
     });
 }
 
