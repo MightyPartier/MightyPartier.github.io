@@ -111,7 +111,7 @@ function displayAllHeroes() {
     const sortedHeroesData = heroesData.sort((a, b) => a.disabled - b.disabled).reverse();
 
     // Reverse the order of sorted heroesData before displaying
-    const reversedHeroesData = sortedHeroesData.slice().reverse();
+    const reversedHeroesData = sortedHeroesData.slice();
 
     reversedHeroesData.forEach(hero => {
         // Calculate hero stats
