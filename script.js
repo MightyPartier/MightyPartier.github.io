@@ -9,15 +9,15 @@ const heroesData = [
     { name: "Celeste", rarity: "Common", faction: "Order", level: 1, type: "Melee", rarityConstant: 98, disabled: false },
     { name: "Genbu", rarity: "Common", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 98, disabled: false },
     { name: "Evelynn", rarity: "Common", faction: "Chaos", level: 1, type: "Ranged", rarityConstant: 98, disabled: false },
-    { name: "Daphne", rarity: "Rare", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 147, disabled: false },
+    { name: "Daphne", rarity: "Rare", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 147, disabled: true },
     { name: "Felicia", rarity: "Rare", faction: "Order", level: 1, type: "Melee", rarityConstant: 147, disabled: false },
     { name: "Venomeus", rarity: "Rare", faction: "Nature", level: 1, type: "Ranged", rarityConstant: 147, disabled: false },
     { name: "Caleb", rarity: "Rare", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 147, disabled: false },
-    { name: "Vanessa", rarity: "Epic", faction: "Order", level: 1, type: "Melee", rarityConstant: 196, disabled: false },
+    { name: "Vanessa", rarity: "Epic", faction: "Order", level: 1, type: "Melee", rarityConstant: 196, disabled: true },
     { name: "Empyrion", rarity: "Epic", faction: "Nature", level: 1, type: "Melee", rarityConstant: 196, disabled: false },
     { name: "Salma", rarity: "Epic", faction: "Chaos", level: 1, type: "Ranged", rarityConstant: 196, disabled: false },
     { name: "Richard", rarity: "Epic", faction: "Order", level: 1, type: "Melee", rarityConstant: 196, disabled: false },
-    { name: "Alucard", rarity: "Legendary", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 245, disabled: false },
+    { name: "Alucard", rarity: "Legendary", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 245, disabled: true },
     { name: "Kilgarrah", rarity: "Legendary", faction: "Chaos", level: 1, type: "Melee", rarityConstant: 245, disabled: false },
     { name: "Magnus", rarity: "Legendary", faction: "Order", level: 1, type: "Ranged", rarityConstant: 245, disabled: false },
     { name: "Scryre", rarity: "Legendary", faction: "Nature", level: 1, type: "Melee", rarityConstant: 245, disabled: false }
@@ -108,7 +108,7 @@ function displayAllHeroes() {
     heroContainer.innerHTML = "";
 
     // Sort heroes based on disabled status (disabled heroes will be at the bottom)
-    const sortedHeroesData = heroesData.sort((a, b) => a.disabled - b.disabled);
+    const sortedHeroesData = heroesData.sort((a, b) => a.disabled - b.disabled).reverse();
 
     // Reverse the order of sorted heroesData before displaying
     const reversedHeroesData = sortedHeroesData.slice().reverse();
