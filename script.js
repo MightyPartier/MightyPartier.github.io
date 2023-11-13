@@ -194,19 +194,18 @@ function updateRecommendation() {
     const factions = [...new Set(heroesData.map(hero => hero.faction))];
 
     factions.forEach(faction => {
-        const factionHeroes = heroesData.filter(hero => hero.faction === faction);
-
-        // Include disabled heroes only if they are re-enabled
-        const activeHeroes = factionHeroes.filter(hero => !hero.disabled || hero.recommended);
+        const activeHeroes = heroesData.filter(hero => hero.faction === faction && !hero.disabled);
 
         if (activeHeroes.length > 0) {
             const maxPowerCostRatio = Math.max(...activeHeroes.map(hero => hero.PowerGained / hero.levelUpCost));
+            
             activeHeroes.forEach(hero => {
                 hero.recommended = (hero.PowerGained / hero.levelUpCost === maxPowerCostRatio);
             });
         }
     });
 }
+
 
 
 // Calculate functions (same as before)
