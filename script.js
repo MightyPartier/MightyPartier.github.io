@@ -133,7 +133,7 @@ function displayAllHeroes() {
             <!-- Checkbox to disable/enable hero -->
             <label>
                 Disable/Enable
-                <input type="checkbox" checked="${!hero.disabled}" onchange="toggleHeroDisable(${heroesData.indexOf(hero)}, this.checked)">
+                <input type="checkbox" ${hero.disabled ? '' : 'checked'} onchange="toggleHeroDisable(${heroesData.indexOf(hero)}, this.checked)">
             </label>
         `;
 
@@ -142,9 +142,10 @@ function displayAllHeroes() {
 }
 
 
+
 // Function to toggle the disabled status of a hero
 function toggleHeroDisable(heroIndex, disabled) {
-    heroesData[heroIndex].disabled = !disabled;
+    heroesData[heroIndex].disabled = disabled;
     updateRecommendation();
     displayAllHeroes();
 }
