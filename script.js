@@ -107,8 +107,11 @@ function displayAllHeroes() {
     const heroContainer = document.getElementById("heroContainer");
     heroContainer.innerHTML = "";
 
-    // Reverse the order of heroesData before displaying
-    const reversedHeroesData = heroesData.slice().reverse();
+    // Sort heroes based on disabled status (disabled heroes will be at the bottom)
+    const sortedHeroesData = heroesData.sort((a, b) => a.disabled - b.disabled);
+
+    // Reverse the order of sorted heroesData before displaying
+    const reversedHeroesData = sortedHeroesData.slice().reverse();
 
     reversedHeroesData.forEach(hero => {
         // Calculate hero stats
@@ -129,23 +132,14 @@ function displayAllHeroes() {
             <p>Power Gained By Leveling: ${hero.PowerGained}</p>
             <input type="number" min="1" value="${hero.level}" onchange="changeHeroLevel(${heroesData.indexOf(hero)}, this.value)">
             
-            <!-- Create checkbox to disable/enable hero -->
-            `;
-        
-        // Create checkbox to disable/enable hero
-        const disableCheckbox = document.createElement("input");
-        disableCheckbox.type = "checkbox";
-        disableCheckbox.checked = !hero.disabled; // Checkbox checked if hero is not disabled
-        disableCheckbox.onchange = function() {
-            toggleHeroDisable(heroesData.indexOf(hero), !this.checked);
-        };
-        
-        const listItem = document.createElement("li");
-        listItem.appendChild(heroInfo);
-        listItem.appendChild(disableCheckbox);
-        
-        // Append the hero info and checkbox to the container
-        heroContainer.appendChild(listItem);
+            <!-- Checkbox to disable/enable hero -->
+            <label>
+                Disable/Enable
+                <input type="checkbox" ${hero.disabled ? '' : 'checked'} onchange="toggleHeroDisable(${heroesData.indexOf(hero)}, !this.checked)">
+            </label>
+        `;
+
+        heroContainer.appendChild(heroInfo);
     });
 }
 
@@ -200,15 +194,20 @@ function updateRecommendation() {
     const factions = [...new Set(heroesData.map(hero => hero.faction))];
 
     factions.forEach(faction => {
-        const factionHeroes = heroesData.filter(hero => hero.faction === faction && !hero.disabled);
-        if (factionHeroes.length > 0) {
-            const maxPowerCostRatio = Math.max(...factionHeroes.map(hero => hero.PowerGained / hero.levelUpCost));
-            factionHeroes.forEach(hero => {
+        const factionHeroes = heroesData.filter(hero => hero.faction === faction);
+
+        // Include disabled heroes only if they are re-enabled
+        const activeHeroes = factionHeroes.filter(hero => !hero.disabled || hero.recommended);
+
+        if (activeHeroes.length > 0) {
+            const maxPowerCostRatio = Math.max(...activeHeroes.map(hero => hero.PowerGained / hero.levelUpCost));
+            activeHeroes.forEach(hero => {
                 hero.recommended = (hero.PowerGained / hero.levelUpCost === maxPowerCostRatio);
             });
         }
     });
 }
+
 
 // Calculate functions (same as before)
 
