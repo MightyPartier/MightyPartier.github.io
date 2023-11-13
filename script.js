@@ -133,10 +133,10 @@ function displayAllHeroes() {
             <input type="number" min="1" value="${hero.level}" onchange="changeHeroLevel(${heroesData.indexOf(hero)}, this.value)">
             
             <!-- Checkbox to disable/enable hero -->
-            <label>
+            <p><label>
                 Disable/Enable
                 <input type="checkbox" ${hero.disabled ? '' : 'checked'} onchange="toggleHeroDisable(${heroesData.indexOf(hero)}, !this.checked)">
-            </label>
+            </label></p>
         `;
 
         heroContainer.appendChild(heroInfo);
