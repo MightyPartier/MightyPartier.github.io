@@ -103,12 +103,10 @@ function levelUp(heroIndex) {
 // ... (same as before)
 
 // Function to display all heroes
+// Function to display all heroes
 function displayAllHeroes() {
     const heroContainer = document.getElementById("heroContainer");
     heroContainer.innerHTML = "";
-
-    const disableHeroesList = document.getElementById("disableHeroesList");
-    disableHeroesList.innerHTML = "";
 
     // Reverse the order of heroesData before displaying
     const reversedHeroesData = heroesData.slice().reverse();
@@ -131,24 +129,18 @@ function displayAllHeroes() {
             <p>Level Up Cost: ${hero.levelUpCost}</p>
             <p>Power Gained By Leveling: ${hero.PowerGained}</p>
             <input type="number" min="1" value="${hero.level}" onchange="changeHeroLevel(${heroesData.indexOf(hero)}, this.value)">
+            
+            <!-- Checkbox to disable/enable hero -->
+            <label>
+                Disable/Enable
+                <input type="checkbox" checked="${!hero.disabled}" onchange="toggleHeroDisable(${heroesData.indexOf(hero)}, this.checked)">
+            </label>
         `;
 
-        // Create checkbox to disable/enable hero
-        const disableCheckbox = document.createElement("input");
-        disableCheckbox.type = "checkbox";
-        disableCheckbox.checked = !hero.disabled; // Checkbox checked if hero is not disabled
-        disableCheckbox.onchange = function() {
-            toggleHeroDisable(heroesData.indexOf(hero), this.checked);
-        };
-
-        const listItem = document.createElement("li");
-        listItem.appendChild(disableCheckbox);
-        listItem.appendChild(heroInfo);
-
-        // Append the hero info and checkbox to the container
-        heroContainer.appendChild(listItem);
+        heroContainer.appendChild(heroInfo);
     });
 }
+
 
 // Function to toggle the disabled status of a hero
 function toggleHeroDisable(heroIndex, disabled) {
