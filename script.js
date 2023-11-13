@@ -104,6 +104,9 @@ function displayAllHeroes() {
     const heroContainer = document.getElementById("heroContainer");
     heroContainer.innerHTML = "";
 
+    const disableHeroesList = document.getElementById("disableHeroesList");
+    disableHeroesList.innerHTML = "";
+
     // Reverse the order of heroesData before displaying
     const reversedHeroesData = heroesData.slice().reverse();
 
@@ -127,10 +130,30 @@ function displayAllHeroes() {
             <input type="number" min="1" value="${hero.level}" onchange="changeHeroLevel(${heroesData.indexOf(hero)}, this.value)">
         `;
 
-        // Append the hero info to the container
-        heroContainer.appendChild(heroInfo);
+        // Create checkbox to disable/enable hero
+        const disableCheckbox = document.createElement("input");
+        disableCheckbox.type = "checkbox";
+        disableCheckbox.checked = !hero.disabled; // Checkbox checked if hero is not disabled
+        disableCheckbox.onchange = function() {
+            toggleHeroDisable(heroesData.indexOf(hero), this.checked);
+        };
+
+        const listItem = document.createElement("li");
+        listItem.appendChild(disableCheckbox);
+        listItem.appendChild(heroInfo);
+
+        // Append the hero info and checkbox to the container
+        heroContainer.appendChild(listItem);
     });
 }
+
+// Function to toggle the disabled status of a hero
+function toggleHeroDisable(heroIndex, disabled) {
+    heroesData[heroIndex].disabled = !disabled;
+    updateRecommendation();
+    displayAllHeroes();
+}
+
 
 // Function to change the level of a hero manually
 function changeHeroLevel(heroIndex, newLevel) {
