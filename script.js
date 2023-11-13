@@ -119,7 +119,7 @@ function displayAllHeroes() {
 
         // Create elements to display hero information
         const heroInfo = document.createElement("div");
-        heroInfo.className = `hero-card ${hero.rarity.toLowerCase()} ${hero.faction.toLowerCase()}-faction ${hero.recommended ? 'recommended' : ''}`;
+        heroInfo.className = `hero-card ${hero.rarity.toLowerCase()} ${hero.faction.toLowerCase()}-faction ${hero.recommended ? 'recommended' : ''} ${hero.disabled ? 'disabled' : ''}`;
         heroInfo.innerHTML = `
             <h3>${hero.name}</h3>
             <p>Rarity: ${hero.rarity}</p>
