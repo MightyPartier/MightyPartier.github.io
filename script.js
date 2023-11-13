@@ -107,8 +107,6 @@ function displayAllHeroes() {
     const heroContainer = document.getElementById("heroContainer");
     heroContainer.innerHTML = "";
 
-    // Sort heroes based on disabled status (disabled heroes will be at the bottom)
-    const sortedHeroesData = heroesData.sort((a, b) => a.disabled - b.disabled).reverse();
 
     // Reverse the order of sorted heroesData before displaying
     const reversedHeroesData = sortedHeroesData.slice();
